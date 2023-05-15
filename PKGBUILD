@@ -2,13 +2,13 @@
 # Maintainer: Bruno Pagani <archange@archlinux.org>
 
 pkgname=keepassxc
-pkgver=2.7.4
-pkgrel=2
+pkgver=2.7.5
+pkgrel=1
 pkgdesc="Cross-platform community-driven port of Keepass password manager"
 arch=(x86_64)
 url="https://keepassxc.org/"
 license=(GPL)
-depends=(argon2 botan2 curl hicolor-icon-theme libxtst
+depends=(argon2 botan curl hicolor-icon-theme libxtst
          minizip qrencode qt5-svg libusb)
 makedepends=(asciidoctor cmake qt5-tools)
 optdepends=('xclip: keepassxc-cli clipboard support under X server'
@@ -16,7 +16,7 @@ optdepends=('xclip: keepassxc-cli clipboard support under X server'
 checkdepends=()
 provides=(org.freedesktop.secrets)
 source=(https://github.com/keepassxreboot/keepassxc/releases/download/$pkgver/keepassxc-$pkgver-src.tar.xz{,.sig})
-sha256sums=(560052961da0389327e759171f660230dfa4e0f4e1fab6139600fb85c6e5dece SKIP)
+sha256sums=(ede24800901816c49569aa4f8bc7180a40cb8b554617fa2a2a2653caac13000c SKIP)
 # List of signing keys can be found at https://keepassxc.org/verifying-signatures/
 validpgpkeys=(BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
               71D4673D73C7F83C17DAE6A2D8538E98A26FD9C4
