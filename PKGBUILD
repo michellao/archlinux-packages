@@ -8,8 +8,8 @@ pkgdesc="Cross-platform community-driven port of Keepass password manager"
 arch=(x86_64)
 url="https://keepassxc.org/"
 license=(GPL)
-depends=(argon2 botan curl hicolor-icon-theme libxtst
-         minizip qrencode qt5-svg libusb)
+depends=(argon2 botan hicolor-icon-theme qt5-x11extras
+         minizip qrencode qt5-svg)
 makedepends=(asciidoctor cmake qt5-tools)
 optdepends=('xclip: keepassxc-cli clipboard support under X server'
             'wl-clipboard: keepassxc-cli clipboard support under Wayland')
@@ -36,7 +36,9 @@ build() {
 	-DWITH_XC_FDOSECRETS=ON \
 	-DWITH_XC_KEESHARE=OFF \
 	-DWITH_XC_BROWSER=OFF \
-	-DWITH_TESTS=OFF
+	-DWITH_XC_YUBIKEY=OFF \
+	-DWITH_TESTS=OFF \
+	-DWITH_APP_BUNDLE=OFF
   cmake --build build
 }
 
