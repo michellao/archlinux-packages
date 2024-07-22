@@ -3,7 +3,7 @@
 
 pkgname=keepassxc
 pkgver=2.7.9
-pkgrel=2
+pkgrel=3
 pkgdesc="Cross-platform community-driven port of Keepass password manager"
 arch=(x86_64)
 url="https://keepassxc.org/"
@@ -30,6 +30,7 @@ build() {
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DCMAKE_INSTALL_LIBDIR=lib \
+	-DKEEPASSXC_BUILD_TYPE=Release \
     -DWITH_XC_ALL=OFF \
     -DWITH_XC_UPDATECHECK=OFF \
 	-DWITH_XC_AUTOTYPE=OFF \
