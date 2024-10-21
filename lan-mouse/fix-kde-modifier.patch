@@ -1,0 +1,17 @@
+diff --git a/input-capture/src/lib.rs b/input-capture/src/lib.rs
+index 7efcaa5..d38e9a5 100644
+--- a/input-capture/src/lib.rs
++++ b/input-capture/src/lib.rs
+@@ -310,10 +310,10 @@ async fn create(
+     }
+ 
+     for backend in [
+-        #[cfg(all(unix, feature = "libei", not(target_os = "macos")))]
+-        Backend::InputCapturePortal,
+         #[cfg(all(unix, feature = "wayland", not(target_os = "macos")))]
+         Backend::LayerShell,
++        #[cfg(all(unix, feature = "libei", not(target_os = "macos")))]
++        Backend::InputCapturePortal,
+         #[cfg(all(unix, feature = "x11", not(target_os = "macos")))]
+         Backend::X11,
+         #[cfg(windows)]

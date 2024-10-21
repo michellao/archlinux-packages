@@ -1,0 +1,42 @@
+# Maintainer: Orhun Parmaksız <orhun@archlinux.org>
+# Contributor: CupricReki
+# Contributor: feschber
+
+pkgname=lan-mouse
+pkgver=0.9.1
+pkgrel=1
+pkgdesc="Software KVM Switch / mouse & keyboard sharing software for Local Area Networks"
+arch=('x86_64')
+url="https://github.com/feschber/lan-mouse"
+license=("GPL-3.0-only")
+depends=('libxtst' 'glib2' 'gcc-libs')
+makedepends=('cargo')
+source=(
+  "$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz"
+  fix-kde-modifier.patch
+)
+sha256sums=('5d75e32bef5e391e145624f8093782291aaa70266f5b97f85090a2514c140917'
+            'df7f9979424e089ed84c831d1ae9fd081a5137da3bda5ea18e6a8de8fc516665')
+
+prepare() {
+  cd "$pkgname-$pkgver"
+  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+  patch -Np1 < "../fix-kde-modifier.patch"
+}
+
+build() {
+  cd "$pkgname-$pkgver"
+  cargo build --frozen --release --no-default-features -F wayland,libei,xdg_desktop_portal
+}
+
+check() {
+  cd "$pkgname-$pkgver"
+  cargo test --frozen --no-default-features -F wayland,libei,xdg_desktop_portal
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  install -Dm0755 -t "$pkgdir/usr/bin/" "target/release/$pkgname"
+}
+
+# vim: ts=2 sw=2 et:
