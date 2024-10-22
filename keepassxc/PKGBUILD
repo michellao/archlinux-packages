@@ -3,7 +3,7 @@
 
 pkgname=keepassxc
 pkgver=2.7.9
-pkgrel=3
+pkgrel=4
 pkgdesc="Cross-platform community-driven port of Keepass password manager"
 arch=(x86_64)
 url="https://keepassxc.org/"
@@ -18,7 +18,7 @@ provides=(org.freedesktop.secrets)
 options=(!debug)
 source=(https://github.com/keepassxreboot/keepassxc/releases/download/$pkgver/keepassxc-$pkgver-src.tar.xz{,.sig})
 sha256sums=('3c44e45f22c00ddac63d8bc11054b4b0ada0222ffac08d3ed70f196cb9ed46fd'
-	'SKIP')
+            'SKIP')
 # List of signing keys can be found at https://keepassxc.org/verifying-signatures/
 validpgpkeys=(BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
               71D4673D73C7F83C17DAE6A2D8538E98A26FD9C4
@@ -27,12 +27,12 @@ validpgpkeys=(BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
 
 build() {
   cmake -S keepassxc-$pkgver -B build \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_INSTALL_LIBDIR=lib \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX=/usr \
+  -DCMAKE_INSTALL_LIBDIR=lib \
 	-DKEEPASSXC_BUILD_TYPE=Release \
-    -DWITH_XC_ALL=OFF \
-    -DWITH_XC_UPDATECHECK=OFF \
+  -DWITH_XC_ALL=OFF \
+  -DWITH_XC_UPDATECHECK=OFF \
 	-DWITH_XC_AUTOTYPE=OFF \
 	-DWITH_XC_NETWORKING=ON \
 	-DWITH_XC_SSHAGENT=ON \
@@ -48,3 +48,5 @@ build() {
 package() {
   cmake --build build --target install -- DESTDIR="$pkgdir"
 }
+
+# vim: ts=2 sw=2 et:
