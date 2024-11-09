@@ -3,7 +3,7 @@
 # Contributor: feschber
 
 pkgname=lan-mouse
-pkgver=0.9.1
+pkgver=0.10.0
 pkgrel=1
 pkgdesc="Software KVM Switch / mouse & keyboard sharing software for Local Area Networks"
 arch=('x86_64')
@@ -15,8 +15,8 @@ source=(
   "$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz"
   fix-kde-modifier.patch
 )
-sha256sums=('5d75e32bef5e391e145624f8093782291aaa70266f5b97f85090a2514c140917'
-            'df7f9979424e089ed84c831d1ae9fd081a5137da3bda5ea18e6a8de8fc516665')
+sha256sums=('dad750d5e38bc564cb5fff37b21b747d652d363efd292dc57dd69be460c5459e'
+            '7b923b1b9a7486b1040e52725baa5e52651da77298023f07c24d2c32762fca67')
 
 prepare() {
   cd "$pkgname-$pkgver"
@@ -26,12 +26,12 @@ prepare() {
 
 build() {
   cd "$pkgname-$pkgver"
-  cargo build --frozen --release --no-default-features -F wayland,libei,xdg_desktop_portal
+  cargo build --frozen --release --no-default-features -F wlroots_emulation,libei_capture,layer_shell_capture,libei_emulation
 }
 
 check() {
   cd "$pkgname-$pkgver"
-  cargo test --frozen --no-default-features -F wayland,libei,xdg_desktop_portal
+  cargo test --frozen --no-default-features -F wlroots_emulation,libei_capture,layer_shell_capture,libei_emulation
 }
 
 package() {
