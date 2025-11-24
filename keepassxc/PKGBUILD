@@ -2,8 +2,8 @@
 # Maintainer: Bruno Pagani <archange@archlinux.org>
 
 pkgname=keepassxc
-pkgver=2.7.10
-pkgrel=2
+pkgver=2.7.11
+pkgrel=1
 pkgdesc="Cross-platform community-driven port of Keepass password manager"
 arch=(x86_64)
 url="https://keepassxc.org/"
@@ -17,7 +17,7 @@ checkdepends=()
 provides=(org.freedesktop.secrets)
 options=(!debug)
 source=(https://github.com/keepassxreboot/keepassxc/releases/download/$pkgver/keepassxc-$pkgver-src.tar.xz{,.sig})
-sha256sums=('5ce76d6440986c24842585f019d5f3cadc166fa71fc911a4fe97b8bbc4819dfa'
+sha256sums=('ce76b02d396369726aaf695bb46b79c0cc41a0c4f9ec806bde1233cb22e6ef62'
             'SKIP')
 # List of signing keys can be found at https://keepassxc.org/verifying-signatures/
 validpgpkeys=(BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
