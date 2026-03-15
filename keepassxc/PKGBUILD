@@ -2,7 +2,7 @@
 # Maintainer: Bruno Pagani <archange@archlinux.org>
 
 pkgname=keepassxc
-pkgver=2.7.11
+pkgver=2.7.12
 pkgrel=1
 pkgdesc="Cross-platform community-driven port of Keepass password manager"
 arch=(x86_64)
@@ -16,9 +16,8 @@ optdepends=('xclip: keepassxc-cli clipboard support under X server'
 checkdepends=()
 provides=(org.freedesktop.secrets)
 options=(!debug)
-source=(https://github.com/keepassxreboot/keepassxc/releases/download/$pkgver/keepassxc-$pkgver-src.tar.xz{,.sig})
-sha256sums=('ce76b02d396369726aaf695bb46b79c0cc41a0c4f9ec806bde1233cb22e6ef62'
-            'SKIP')
+source=("git+https://github.com/keepassxreboot/keepassxc.git#tag=${pkgver}?signed")
+sha256sums=('7cfbeb0f0c732b07b99d04a27894c0dbf290192ad1363e3b35475b11b1f456e8')
 # List of signing keys can be found at https://keepassxc.org/verifying-signatures/
 validpgpkeys=(BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
               71D4673D73C7F83C17DAE6A2D8538E98A26FD9C4
@@ -26,7 +25,7 @@ validpgpkeys=(BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
               C1E4CBA3AD78D3AFD894F9E0B7A66F03B59076A8)
 
 build() {
-  cmake -S keepassxc-$pkgver -B build \
+  cmake -S "${pkgname}" -B build \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_INSTALL_PREFIX=/usr \
   -DCMAKE_INSTALL_LIBDIR=lib \
@@ -46,7 +45,7 @@ build() {
 }
 
 package() {
-  cmake --build build --target install -- DESTDIR="$pkgdir"
+  cmake --build build --target install -- DESTDIR="${pkgdir}"
 }
 
 # vim: ts=2 sw=2 et:
